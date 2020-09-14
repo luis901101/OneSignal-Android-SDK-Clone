@@ -59,7 +59,7 @@ class OneSignalRestClient {
    private static final int GET_TIMEOUT = 60_000;
 
    public static void updateBaseURL(String baseUrl){
-      if(baseUrl != null) BASE_URL = baseUrl;
+      if(baseUrl != null) BASE_URL = baseUrl + (baseUrl.endsWith("/") ? "" : "/");
    }
 
    private static int getThreadTimeout(int timeout) {
