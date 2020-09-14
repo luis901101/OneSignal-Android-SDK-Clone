@@ -76,7 +76,7 @@ public class OneSignalExampleApp extends Application {
       SharedPreferences sharedPref = context.getSharedPreferences("app_settings", Context.MODE_PRIVATE);
       SharedPreferences.Editor editor = sharedPref.edit();
       editor.putString(SHARED_PREFS_OS_APP_ID, id);
-      editor.commit();
+      editor.apply();
 
       OneSignal.init(context, null, id);
    }
