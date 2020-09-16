@@ -1,8 +1,8 @@
-### This is a fork of [OneSignal-Android-SDK](https://github.com/OneSignal/OneSignal-Android-SDK)
+### This is a clone of [OneSignal-Android-SDK](https://github.com/OneSignal/OneSignal-Android-SDK)
 
 that allows you to specify a custom base url in case you need to use a proxy server...
 
-This fork is based in the source code of version:
+This clone is based in the source code of version:
 ![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.onesignal/OneSignal/badge.svg)
 
 ----
