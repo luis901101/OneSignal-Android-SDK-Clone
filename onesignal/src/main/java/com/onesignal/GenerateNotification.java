@@ -50,6 +50,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -193,7 +194,8 @@ class GenerateNotification {
 
    private static PendingIntent getNewActionPendingIntent(int requestCode, Intent intent) {
       int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-      if (android.os.Build.VERSION.SDK_INT >= 31) flags |= PendingIntent.FLAG_MUTABLE;
+      if (android.os.Build.VERSION.SDK_INT >= 31) flags = PendingIntent.FLAG_MUTABLE;
+      Log.d("PendingIntent-FLAGS", flags+"");
       if (openerIsBroadcast)
          return PendingIntent.getBroadcast(currentContext, requestCode, intent, flags);
       return PendingIntent.getActivity(currentContext, requestCode, intent, flags);
