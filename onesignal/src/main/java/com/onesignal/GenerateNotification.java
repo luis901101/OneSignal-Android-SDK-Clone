@@ -194,8 +194,8 @@ class GenerateNotification {
 
    private static PendingIntent getNewActionPendingIntent(int requestCode, Intent intent) {
       int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-      if (android.os.Build.VERSION.SDK_INT >= 31) flags = PendingIntent.FLAG_MUTABLE;
-      Log.d("PendingIntent-FLAGS", flags+"");
+      if (android.os.Build.VERSION.SDK_INT >= 31) flags = PendingIntent.FLAG_IMMUTABLE;
+      System.out.println("PendingIntent-FLAGS-"+flags);
       if (openerIsBroadcast)
          return PendingIntent.getBroadcast(currentContext, requestCode, intent, flags);
       return PendingIntent.getActivity(currentContext, requestCode, intent, flags);
