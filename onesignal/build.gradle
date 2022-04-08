@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 31
     defaultConfig {
         // Normally we shouldn't need to redefine manifestPlaceholders for our onesignal project
         //   but Android Studio gets a sync error if these are not here.

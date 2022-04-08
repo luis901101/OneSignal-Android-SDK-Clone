@@ -8,7 +8,7 @@ apply plugin: 'com.android.application'
 //apply plugin: com.onesignal.androidsdk.GradleProjectPlugin
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 31
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.onesignal.example"
@@ -16,7 +16,7 @@ android {
                                 // Project number pulled from dashboard, local value is ignored.
                                 onesignal_google_project_number: "REMOTE"]
         minSdkVersion 17
-        targetSdkVersion 28
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
     }

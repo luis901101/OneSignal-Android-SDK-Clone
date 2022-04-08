@@ -28,6 +28,7 @@
 package com.onesignal;
 
 import android.R.drawable;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
@@ -49,6 +50,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import com.onesignal.OneSignalDbContract.NotificationTable;
@@ -190,9 +192,11 @@ class GenerateNotification {
    }
 
    private static PendingIntent getNewActionPendingIntent(int requestCode, Intent intent) {
+      int flags = PendingIntent.FLAG_UPDATE_CURRENT;
+      if (android.os.Build.VERSION.SDK_INT >= 31) flags |= PendingIntent.FLAG_MUTABLE;
       if (openerIsBroadcast)
-         return PendingIntent.getBroadcast(currentContext, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-      return PendingIntent.getActivity(currentContext, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+         return PendingIntent.getBroadcast(currentContext, requestCode, intent, flags);
+      return PendingIntent.getActivity(currentContext, requestCode, intent, flags);
    }
 
    private static Intent getNewBaseIntent(int notificationId) {
@@ -508,6 +512,7 @@ class GenerateNotification {
    }
    
    // This summary notification will be visible instead of the normal one on pre-Android 7.0 devices.
+   @SuppressLint({"RestrictedApi", "Range"})
    private static void createSummaryNotification(NotificationGenerationJob notifJob, OneSignalNotificationBuilder notifBuilder) {
       boolean updateSummary = notifJob.restoring;
       JSONObject gcmBundle = notifJob.jsonPayload;
@@ -814,8 +819,8 @@ class GenerateNotification {
             // This is required as setScaleType can not be called through RemoteViews as it is an enum.
             customView.setViewPadding(R.id.os_bgimage_notif_bgimage_align_layout, -5000, 0, 0, 0);
             customView.setImageViewBitmap(R.id.os_bgimage_notif_bgimage_right_aligned, bg_image);
-            customView.setViewVisibility(R.id.os_bgimage_notif_bgimage_right_aligned, 0); // visible
-            customView.setViewVisibility(R.id.os_bgimage_notif_bgimage, 2); // gone
+            customView.setViewVisibility(R.id.os_bgimage_notif_bgimage_right_aligned, View.VISIBLE); // visible
+            customView.setViewVisibility(R.id.os_bgimage_notif_bgimage, View.GONE); // gone
          }
          else
             customView.setImageViewBitmap(R.id.os_bgimage_notif_bgimage, bg_image);
